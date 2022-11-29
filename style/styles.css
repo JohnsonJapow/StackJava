@@ -1,0 +1,21 @@
+/*
+font-family: 'Alfa Slab One', cursive;
+font-family: 'Comforter Brush', cursive;
+font-family: 'Lato', sans-serif;
+
+*/
+body{
+/*background-color: red;*/
+}
+
+h1{
+	font-family: 'Alfa Slab One', cursive;
+	background-color: #ccffff;
+}
+.para1{
+	font-family: 'Comforter Brush', cursive;
+}
+.para2{
+	font-family: 'Lato', sans-serif;
+}
+
