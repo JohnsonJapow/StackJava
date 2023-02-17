@@ -12,5 +12,5 @@ package DS_week4;
         public void push(T el);
         public  T pop();
         public T peek();
-        public int realocate();
+        //public int realocate();
     }
