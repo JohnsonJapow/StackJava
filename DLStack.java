@@ -9,22 +9,31 @@ import java.util.Arrays;
  * @author ivy
  */
 public class DLStack<T> implements Stack<T> {
-    private int maxSize;
-    private int top;
-    private T [] items;
+    //private int maxSize;
+    //private int top;
+    //private T [] items;
     private DLNode<T> first;
     private DLNode<T> last;
     
     public DLStack(int size){
-        this.maxSize=size;
-        this.top=-1;
-        this.items=(T[])new Object [maxSize];
+        //this.maxSize=size;
+        //this.top=-1;
+        //this.items=(T[])new Object [maxSize];
         this.first=null;
         this.last=null;
     }
     
     public void push(T el){
-        if(top==maxSize){
+        if(isEmpty()){
+            last=new DLNode<>(el,null,null);
+            first=last;
+        }
+        else{
+            DLNode<T> temp=last;
+            last=new DLNode(el,temp,null);
+            
+        }
+        /*if(top==maxSize){
             throw new IndexOutOfBoundsException();
         }
         else if(isEmpty()){
@@ -40,14 +49,27 @@ public class DLStack<T> implements Stack<T> {
             items[top]=el;
             
         }
+        */
     }
+    /*
     public int realocate(){
         maxSize*=2;
         items=Arrays.copyOf(items,maxSize);
         return maxSize;
     }
+    */
     public T pop(){
-        
+        if(isEmpty()){
+            throw new IndexOutOfBoundsException();
+        }
+        else{
+            T value=last.el;
+            DLNode<T> temp=last.pre;
+            last=temp;
+            
+            return value;
+        }
+        /*
         if(isEmpty()){
             throw new IndexOutOfBoundsException();
         }
@@ -68,10 +90,10 @@ public class DLStack<T> implements Stack<T> {
            top--;
            return element;
         }
-      
+      */
     }
     private boolean isEmpty(){
-        return first==null;
+        return last==null;
     }
     
     @Override
@@ -79,18 +101,18 @@ public class DLStack<T> implements Stack<T> {
         if (isEmpty()) {
             throw new IndexOutOfBoundsException();
         } else {
-            T value = items[top];
+            T value = last.el;
             return value;
         }          
     }
     @Override
     public String toString(){
         String str="TOP";
-        int counter=top;
-        while(counter>=0){
+        DLNode<T> top=last;
+        while(top!=null){
             
-            str+="\n"+items[counter];
-            counter--;
+            str+="\n"+top.el;
+            top=top.pre;
             
         }
         return str+"\nBOTTOM";
@@ -106,11 +128,13 @@ public class DLStack<T> implements Stack<T> {
         System.out.println("The top item of the stack is "+s.peek());
         s.push(4);
         System.out.println("The top item of the stack is "+s.peek());
+        
         for (int i = 0; i < 500; i++) {
             s.push(i);
         }
+        
         System.out.println("stack : \n" + s.toString());
-        System.out.println("The max size of the stack is : "+s.realocate());
+        //System.out.println("The max size of the stack is : "+s.realocate());
         System.out.println("The item be rid of is "+s.pop());
         System.out.println("The item be rid of is "+s.pop());
         System.out.println("The item be rid of is "+s.pop());
